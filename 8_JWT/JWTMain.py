@@ -46,7 +46,7 @@ def get_session():
 SessionDep =  Annotated[Session, Depends(get_session)]
 
 # ================================================================  
-#JWT: pip install "python-jose[cryptography]" 
+#JWT setup: pip install "python-jose[cryptography]" 
 # ================================================================  
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
@@ -81,8 +81,6 @@ def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], session: Ses
     if user is None:
         raise HTTPException(status_code=401, detail="User not found")
     return user
-
-
 
 
 
